@@ -7,7 +7,7 @@
 При новом подключении создается сущность Connection с выделенным потоком который ожидает сообщения. 
 За отправку сообщений всем пользователям отыечает другая сущность Sender с единственным выделенным потоком.
 Клиент параллельно может отправлять и получать сообщения от сервера, так как у него есть два потока на эти операции. Также сервер записывает все события в файл с логами: 
-[GitHub Pages](https://github.com/sezergemtsov/SimpleChat/blob/main/Server/src/main/resources/ChatLog.txt)
+(https://github.com/sezergemtsov/SimpleChat/blob/main/Server/src/main/resources/ChatLog.txt)
 
 Детальная структура приложения показаны ниже:
 
