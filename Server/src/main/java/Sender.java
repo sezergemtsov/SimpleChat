@@ -41,10 +41,10 @@ public class Sender implements Runnable {
     }
 
     public void sendEveryone(String massage) {
-        connections.forEach(x->{
-             PrintWriter writer = x.getWriter();
-             writer.println(massage);
-             writer.flush();
+        connections.forEach(x -> {
+            PrintWriter writer = x.getWriter();
+            writer.println(massage);
+            writer.flush();
         });
     }
 

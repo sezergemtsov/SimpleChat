@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        SettingsHelper helper = new SettingsHelper("Client/src/main/resources/Settings.txt");
+        SettingsHelper helper = new SettingsHelper("Client_Test1/src/main/resources/Settings.txt");
         helper.read();
         String host = helper.getHost();
         int port = helper.getPort();

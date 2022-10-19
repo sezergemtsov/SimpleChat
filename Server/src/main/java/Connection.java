@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
 
 public class Connection implements Runnable {
@@ -39,10 +38,10 @@ public class Connection implements Runnable {
 
         while (isConnection) {
             try {
-                String massage = server.protocol.reConvert(in.readLine(),this);
-                if (massage!=null) {
+                String massage = server.protocol.reConvert(in.readLine(), this);
+                if (massage != null) {
                     if (clientName != null) {
-                        massage =  clientName + ": " + massage;
+                        massage = clientName + ": " + massage;
                     } else {
                         massage = clientAddress + ": " + massage;
                     }
@@ -82,6 +81,7 @@ public class Connection implements Runnable {
             e.printStackTrace();
         }
     }
+
     public PrintWriter getWriter() {
         return out;
     }

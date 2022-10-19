@@ -4,36 +4,7 @@ public class SCMP {
 
     //Simple Chat Massage Protocol "SCMP"
 
-    SCMP() {}
-
-    public String reConvert (String text, Connection connection) {
-
-        String[] splitText = text.split("//");
-        String respond = null;
-
-        if (!connection.isClientAddress) {
-            connection.setClientAddress(splitText[0]);
-        }
-
-        if (splitText[3].equals("name")) {
-            connection.setClientName(splitText[4]);
-            String log = splitText[0] + " set new name: " + splitText[4];
-            connection.server.logger.log(log);
-            return null;
-        }
-
-        if (splitText[3].equals("exit")) {
-            String log = splitText[0] + " quit from chat";
-            connection.server.logger.log(log);
-            connection.termination();
-            return null;
-        }
-
-        if (splitText[3].equals("text")) {
-            respond = splitText[4];
-        }
-
-        return respond;
+    SCMP() {
     }
 
     public static String sendText(String massage, Socket clientSocket, String name) {
@@ -91,6 +62,36 @@ public class SCMP {
         stB.append(massage);
 
         return stB.toString();
+    }
+
+    public String reConvert(String text, Connection connection) {
+
+        String[] splitText = text.split("//");
+        String respond = null;
+
+        if (!connection.isClientAddress) {
+            connection.setClientAddress(splitText[0]);
+        }
+
+        if (splitText[3].equals("name")) {
+            connection.setClientName(splitText[4]);
+            String log = splitText[0] + " set new name: " + splitText[4];
+            connection.server.logger.log(log);
+            return null;
+        }
+
+        if (splitText[3].equals("exit")) {
+            String log = splitText[0] + " quit from chat";
+            connection.server.logger.log(log);
+            connection.termination();
+            return null;
+        }
+
+        if (splitText[3].equals("text")) {
+            respond = splitText[4];
+        }
+
+        return respond;
     }
 
 

@@ -1,8 +1,14 @@
 public class Main {
     public static void main(String[] args) {
 
-        String host = "127.0.01";
-        int port = 80;
+        String host;
+        int port;
+
+        SettingsHelper helper = new SettingsHelper();
+        helper.read();
+
+        host = helper.getHost();
+        port = helper.getPort();
 
         new Server(port);
 

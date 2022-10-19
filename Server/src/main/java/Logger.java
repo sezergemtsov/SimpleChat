@@ -8,15 +8,25 @@ public class Logger {
 
     private static Logger instance;
 
+    Logger() {
+    }
+
+    public static Logger getInstance() {
+        if (instance == null) {
+            instance = new Logger();
+        }
+        return instance;
+    }
+
     public void log(String message) {
 
-        String log = "[ "+ LocalDateTime.now() + " ]" + message + "\n";
+        String log = "[ " + LocalDateTime.now() + " ]" + message + "\n";
         byte[] bytes = log.getBytes();
         System.out.println(message);
 
         String filePath = "Server/src/main/resources/ChatLog.txt";
         File file = new File(filePath);
-        try(FileOutputStream ous = new FileOutputStream(file, true)) {
+        try (FileOutputStream ous = new FileOutputStream(file, true)) {
             file.createNewFile();
             ous.write(bytes);
         } catch (FileNotFoundException e) {
@@ -25,14 +35,5 @@ public class Logger {
             e.printStackTrace();
         }
 
-    }
-
-    Logger() {}
-
-    public static Logger getInstance() {
-        if (instance == null) {
-            instance = new Logger();
-        }
-        return instance;
     }
 }
