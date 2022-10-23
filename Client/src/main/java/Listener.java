@@ -18,7 +18,7 @@ public class Listener implements Runnable {
     @Override
     public void run() {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
-            while (Main.isConnected) {
+            while (true) {
                 try {
                     String massage = in.readLine();
                     System.out.println(massage);

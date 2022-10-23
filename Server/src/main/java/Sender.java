@@ -18,10 +18,12 @@ public class Sender implements Runnable {
 
     @Override
     public void run() {
-        while (t.isAlive()) {
+        while (true) {
             try {
-                String massage = massages.take();
-                sendEveryone(massage);
+                if (!massages.isEmpty()) {
+                    String massage = massages.take();
+                    sendEveryone(massage);
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

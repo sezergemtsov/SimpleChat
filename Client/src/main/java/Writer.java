@@ -8,6 +8,7 @@ public class Writer implements Runnable {
     Thread t;
     Socket clientSocket;
     Scanner scanner;
+    boolean isConnected = true;
 
     Writer(Socket clientSocket) {
         t = new Thread(this);
@@ -27,7 +28,7 @@ public class Writer implements Runnable {
                 case "/exit":
                     out.println(SCMP.sendExit(name, clientSocket, Main.name));
                     System.out.println("End of session");
-                    Main.changeStatus();
+                    isConnected = false;
                     break;
                 default:
                     out.println(SCMP.sendName(name, clientSocket, Main.name));
@@ -35,13 +36,13 @@ public class Writer implements Runnable {
                     break;
             }
 
-            while (Main.isConnected) {
+            while (isConnected) {
                 String massage = scanner.nextLine();
                 switch (massage) {
                     case "/exit":
                         out.println(SCMP.sendExit(massage, clientSocket, Main.name));
                         System.out.println("End of session");
-                        Main.changeStatus();
+                        isConnected = false;
                         break;
                     default:
                         out.println(SCMP.sendText(massage, clientSocket, Main.name));
